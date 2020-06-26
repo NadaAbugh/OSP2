@@ -112,7 +112,7 @@ public class PageFaultHandler extends IflPageFaultHandler {
 		if(numFreeFrames() > 0) {	//If there is a free frame, use it
 			frame = getFreeFrame();
 			page.setFrame(frame);
-			frame.setReserved(thread.getTask()); /*!! changed from thread.gettask*/	
+			frame.setReserved(thread.getTask()); 
 			swapIn(thread, page);
 
 			if (thread.getStatus() == ThreadKill) { //If pagefault-causing thread got killed waiting for swap out/swap in
@@ -137,7 +137,7 @@ public class PageFaultHandler extends IflPageFaultHandler {
 					page.setValidatingThread(null);// Page fault is over, so validting thread becomes null
 					page.setFrame(null); // Set page's frame to null
 					pfEvent.notifyThreads(); // Notify the thread that caused the pagefault
-					ThreadCB.dispatch(); // Call dispatch
+					ThreadCB.dispatch();
 					return FAILURE;
 				}
 				//Free the dirty frame and update 
@@ -159,7 +159,7 @@ public class PageFaultHandler extends IflPageFaultHandler {
 					return FAILURE;
 				}
 
-			} //END OF of: if(frame.isDirty()==true)
+			} 
 
 			else { // Frame is NOT dirty
 				page.setFrame(frame); // Set the page's frame
