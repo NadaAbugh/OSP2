@@ -20,12 +20,12 @@ public class MMU extends IflMMU {
 	public static int Cursor;
 	public static int wantFree;
 
-	/**s
+	/**
         This method is called once before the simulation starts.
 		Can be used to initialize the frame table and other static variables.
 
         @OSPProject Memory        
-	 */
+	*/
 	// Author: Dareen Bukhari   - 1607281 
 	// Last Update: April 14, 2020 
 	public static void init() { // Initialize the static variables
@@ -71,10 +71,10 @@ public class MMU extends IflMMU {
 
 			if (pageTableEntry.getValidatingThread() == null) { // If no other thread caused a PF on this page
 				// Initiate page fault using interrupt. Set the appropriate InterruptVector fields: 
-				InterruptVector.setInterruptType(referenceType); //2. Memory reference type
-				InterruptVector.setPage(pageTableEntry); //1. Page that caused interrupt
-				InterruptVector.setReferenceType(referenceType); //2. Memory reference type
-				InterruptVector.setThread(thread); //3. Thread about to cause interrupt
+				InterruptVector.setInterruptType(referenceType); // Interrupt type
+				InterruptVector.setPage(pageTableEntry); // Page that caused interrupt
+				InterruptVector.setReferenceType(referenceType); // Memory reference type
+				InterruptVector.setThread(thread); // Thread about to cause interrupt
 				CPU.interrupt(PageFault); // Call the interrupt of type PageFault
 			}
 			else  // Another thread caused the PF, and the page is already on its way to main memory
