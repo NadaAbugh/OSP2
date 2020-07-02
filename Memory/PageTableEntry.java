@@ -48,19 +48,19 @@ public class PageTableEntry extends IflPageTableEntry {
 	 */
 
 	// Author: Dareen Bukhari   - 1607281, 
-	//         Nada AbuGhazalah - 1606827
+	//         Nada Abughazalah - 1606827
 	// Last Update: April 13, 2020 
 	public int do_lock(IORB iorb) {
 		// Check if the page is in main memory by checking the validity of the page
 		if (this.isValid() == false) { // Initiate page fault
 		
 			if (getValidatingThread() == null) { // Page not involved in page fault
-				PageFaultHandler.handlePageFault(iorb.getThread(), MemoryLock, this); //Page fault caused by locking
+				PageFaultHandler.handlePageFault(iorb.getThread(), MemoryLock, this); // Page fault caused by locking
 				
-				if(iorb.getThread().getStatus() == ThreadKill) //If thread got killed waiting
+				if(iorb.getThread().getStatus() == ThreadKill) // If thread got killed waiting
 					return FAILURE;
 			}
-			else if (getValidatingThread() != iorb.getThread()) {  // NThread2 of same task, if Th2<>Th1, SUSPEND 
+			else if (getValidatingThread() != iorb.getThread()) {  // NThread2 of same task, if Th2<>Th1 
 				// Thread that created iorb killed while waiting for lock to complete
 				iorb.getThread().suspend(this); // Suspend the thread until page (ie, this) becomes valid		
 				// If page is still invalid			
@@ -84,7 +84,7 @@ public class PageTableEntry extends IflPageTableEntry {
 	 */
 
 	// Author: Dareen Bukhari   - 1607281, 
-	//         Nada AbuGhazalah - 1606827
+	//         Nada Abughazalah - 1606827
 	// Last Update: April 8, 2020
 	public void do_unlock() { 
 
