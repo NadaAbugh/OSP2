@@ -217,7 +217,7 @@ public class ThreadCB extends IflThreadCB {
 	 */
 	public void do_resume() {
 		if(getStatus() < ThreadWaiting) {
-			MyOut.print(this,"Attempt to resume " + this + ", which wasn’t waiting");
+			MyOut.print(this,"Attempt to resume " + this + ", which wasnâ€™t waiting");
 			return;
 		}
 		MyOut.print(this, "Resuming " + this);
